@@ -1,5 +1,4 @@
 ## tardygram
-# Tardygram (Instagram clone)
 
 Let's create an Instagram clone.
 
