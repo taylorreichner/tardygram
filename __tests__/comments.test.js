@@ -62,13 +62,13 @@ describe('tardygram COMMENT routes', () => {
 
 	it('should delete a comment with the given id', () => {
 		return request(app)
-			.delete('/api/v1/comments/3')
+			.delete('/api/v1/comments/2')
 			.then(({ body }) =>
 				expect(body).toEqual({
-					id: '3',
-					commentText: 'another comment',
-					gramId: '1',
-					commentBy: '1',
+					id: '2',
+					commentText: 'NEW COMMENT!',
+					gramId: '2',
+					commentBy: '2',
 				})
 			);
 	});
