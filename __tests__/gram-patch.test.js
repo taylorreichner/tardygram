@@ -9,22 +9,22 @@ describe('gram routes', () => {
 		return setup(pool);
 	});
 
-	beforeEach(async () => {
-		//User.insert
-		const gramOne = await Gram.insert({
-			photoUrl: 'https://bit.ly/fcc-relaxing-cat',
-			caption: 'He just woke up',
-			tags: ['yes', 'no', 'maybe'],
-			author: 'melvin',
-		});
-		await Gram.insert({
-			photoUrl: 'https://bit.ly/fcc-relaxing-cat',
-			caption: '',
-			tags: ['yes', 'no', 'maybe'],
-			author: 'sarah',
-		});
-		console.log(gramOne);
-	});
+	// beforeEach(async () => {
+	// 	//User.insert
+	// 	const gramOne = await Gram.insert({
+	// 		photoUrl: 'https://bit.ly/fcc-relaxing-cat',
+	// 		caption: 'He just woke up',
+	// 		tags: ['yes', 'no', 'maybe'],
+	// 		author: 'melvin',
+	// 	});
+	// 	await Gram.insert({
+	// 		photoUrl: 'https://bit.ly/fcc-relaxing-cat',
+	// 		caption: '',
+	// 		tags: ['yes', 'no', 'maybe'],
+	// 		author: 'sarah',
+	// 	});
+	// 	console.log(gramOne);
+	// });
 
 	it('updates a gram by id', () => {
 		return request(app)
@@ -35,11 +35,11 @@ describe('gram routes', () => {
 			.then((res) => {
 				console.log('here it is', res.body);
 				expect(res.body).toEqual({
-					gramId: 2,
-					photoUrl: 'https://bit.ly/fcc-relaxing-cat',
+					id: '2',
+					photoUrl: 'gram_url',
 					caption: 'We had a great time in Denmark',
-					tags: ['yes', 'no', 'maybe'],
-					author: 'sarah',
+					tags: ['tag1', 'tag2', 'tag3'],
+					author: '2',
 				});
 			});
 	});
@@ -49,10 +49,11 @@ describe('gram routes', () => {
 	//       .delete('/api/v1/grams/1')
 	//       .then((res) => {
 	//         expect(res.body).toEqual({
-	//           photoUrl: 'https://bit.ly/fcc-relaxing-cat',
-	//           caption: 'He just woke up',
-	//           tags: ['yes', 'no', 'maybe'],
-	//           author: 11,
+	// gramID: 3,
+	//           photoUrl: 'gram_url',
+	//           caption: 'this is a caption',
+	//           tags: ['tag1', 'tag2', 'tag3'],
+	//           author: '1',
 	//         });
 	//       });
 	//   });
