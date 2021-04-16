@@ -25,7 +25,7 @@ jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
       });
   
       return request(app)
-        .post('/api/v1/gramPost')
+        .post('/api/v1/grams/new')
         .send({ 
             caption: 'Hello this is some text',
             tags: ['blessed'],
@@ -34,7 +34,7 @@ jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
          })
         .then((res) => {
           expect(res.body).toEqual({
-            id: '4',
+            id: '3',
             caption: 'Hello this is some text',
             tags: ['blessed'],
             author: '1',

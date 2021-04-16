@@ -35,31 +35,29 @@ describe('gram routes', () => {
 			.then((res) => {
 				expect(res.body).toEqual({
 					id: '2',
-					photoUrl: 'my-cool-gram.jpg',
+					photoUrl: 'gram_url',
 					caption: 'We had a great time in Denmark',
 					tags: [
-						"these",
-					     "are",
-					     "my",
-					     "cool",
-					     "tags",
+						"tag1",
+        			    "tag2",
+      				    "tag3",
 						],
 					author: '2',
 				});
 			});
 	});
 
-	//   it('deletes a gram by id', () => {
-	//     return request(app)
-	//       .delete('/api/v1/grams/1')
-	//       .then((res) => {
-	//         expect(res.body).toEqual({
-	// gramID: 3,
-	//           photoUrl: 'gram_url',
-	//           caption: 'this is a caption',
-	//           tags: ['tag1', 'tag2', 'tag3'],
-	//           author: '1',
-	//         });
-	//       });
-	//   });
+	   it('deletes a gram by id', () => {
+	     return request(app)
+	      .delete('/api/v1/grams/1')
+	      .then((res) => {
+	        expect(res.body).toEqual({
+			  id: '1',
+	          photoUrl: 'gram_url',
+	          caption: 'this is a caption',
+	          tags: ['tag1', 'tag2', 'tag3'],
+	          author: '1',
+	        });
+	      });
+	  });
 });

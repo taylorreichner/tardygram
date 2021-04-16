@@ -13,28 +13,28 @@ CREATE TABLE grams (
     gram_photo_url TEXT NOT NULL,
     gram_caption TEXT,
     gram_tags TEXT[],
-    author BIGINT NOT NULL REFERENCES users(id)
+    author BIGINT REFERENCES users(id)
+    
 );
 
 CREATE TABLE comments (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     comment_text TEXT NOT NULL, 
-    gram_id BIGINT NOT NULL REFERENCES grams(id),
-    comment_by BIGINT NOT NULL REFERENCES users(id)
+    comment_by BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    gram_id BIGINT REFERENCES grams(id) ON DELETE CASCADE
 );
 
 INSERT INTO users(github_username, github_photo_url)
     VALUES 
         ('test_user', 'test_user_img'),
         ('new_user', 'new_user_image'),
-        ('julianne-vela', 'julianne-avatar');
+        ('test_user1', 'test_user_img1'),
+        ('new_user1', 'new_user_image1');
 
 INSERT INTO grams(gram_photo_url, gram_caption, gram_tags, author)
-	VALUES 
-        ('my-cool-gram.jpg', 'this is the coolest!', '{"these","are","my","cool","tags"}', 1),
-        ('my-cool-gram.jpg', 'this is the coolest!', '{"these","are","my","cool","tags"}', 2),
-        ('my-cool-gram.jpg', 'this is the coolest!', '{"these","are","my","cool","tags"}', 3);
-
+    VALUES
+        ('gram_url', 'this is a caption', '{"tag1", "tag2", "tag3"}', 1),
+        ('gram_url', 'this is another caption', '{"tag1", "tag2", "tag3"}', 2);
 
 INSERT INTO comments (comment_text, gram_id, comment_by)
     VALUES
