@@ -3,6 +3,15 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
+	req.user = {
+		username: 'test_user',
+		photoUrl: 'http://image.com/image.png',
+	};
+
+	next();
+});
+
 describe('tardygram COMMENT routes', () => {
 	beforeEach(() => {
 		return setup(pool);
@@ -49,12 +58,20 @@ describe('tardygram COMMENT routes', () => {
 				commentBy: '1',
 			},
 		]);
-	 });
+	});
 
-	// it('should delete a comment with the given id', async () => {
-	//     const { body } = await request(app).delete('/api/v1/comments/3')
-
-	// })
+	it('should delete a comment with the given id', () => {
+		return request(app)
+			.delete('/api/v1/comments/3')
+			.then(({ body }) =>
+				expect(body).toEqual({
+					id: '3',
+					commentText: 'another comment',
+					gramId: '1',
+					commentBy: '1',
+				})
+			);
+	});
 });
 
 // POST /comments
