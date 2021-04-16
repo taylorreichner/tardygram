@@ -15,13 +15,17 @@ describe('tardygram COMMENT routes', () => {
 
 		const { body } = await request(app)
 			.post('/api/v1/comments/new', comment)
-			.send(comment);
+			.send({
+				commentText: 'This is a really great comment!',
+				gramId: 1,
+				commentBy: 1,
+			});
 
 		expect(body).toEqual({
-			comment_id: 1,
-			...comment,
-			gram_id: 1,
-			comment_by: 'julianne-vela',
+			commentId: 4,
+			commentText: 'This is a really great comment!',
+			gramId: 1,
+			commentBy: 1,
 		});
 	});
 });
