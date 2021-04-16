@@ -3,23 +3,36 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
+	req.user = {
+		id: '1',
+		username: 'test_user',
+		photoUrl: 'http://placekitten.com/20/20',
+	};
+	next();
+});
+
 describe('tardygram COMMENT routes', () => {
 	beforeEach(() => {
 		return setup(pool);
 	});
 
-	it('should create a new comment by POST', async () => {
-		const { body } = await request(app).post('/api/v1/comments/new').send({
-			commentText: 'This is a really great comment!',
-			gramId: '1',
-			commentBy: '3',
-		});
-
-		expect(body).toEqual({
-			commentText: 'This is a really great comment!',
-			gramId: '1',
-			commentBy: '3',
-		});
+	it('should create a new comment by POST', () => {
+		return request(app)
+			.post('/api/v1/comments/new')
+			.send({
+				commentText: 'This is a really great comment!',
+				gramId: '1',
+				commentBy: '3',
+			})
+			.then((res) => {
+				expect(res.body).toEqual({
+					id: '4',
+					commentText: 'This is a really great comment!',
+					gramId: '1',
+					commentBy: '3',
+				});
+			});
 	});
 
 	it('should return a list of all comments', async () => {
@@ -27,7 +40,8 @@ describe('tardygram COMMENT routes', () => {
 
 		expect(body).toEqual([
 			{
-				commentText: expect.any(string),
+				id: '4',
+				commentText: expect.any(String),
 				gramId: expect.any(Number),
 				commentBy: expect.any(Number),
 			},
