@@ -59,6 +59,11 @@ describe('tardygram COMMENT routes', () => {
 			},
 		]);
 	});
+
+	// it('should delete a comment with the given id', async () => {
+	//     const { body } = await request(app).delete('/api/v1/comments/3')
+
+	// })
 });
 
 // POST /comments
