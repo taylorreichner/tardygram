@@ -26,13 +26,15 @@ CREATE TABLE comments (
 INSERT INTO users(github_username, github_photo_url)
     VALUES 
         ('test_user', 'test_user_img'),
-        ('new_user', 'new_user_image');
+        ('new_user', 'new_user_image'),
+        ('julianne-vela', 'julianne-avatar');
 
 INSERT INTO grams(gram_photo_url, gram_caption, gram_tags, author)
-    VALUES
-        ('gram_url', 'this is a caption', '{"
-        tag1", "tag2", "tag3"}', 1),
-        ('gram_url', 'this is another caption', '{"tag1", "tag2", "tag3"}', 2);
+	VALUES 
+        ('my-cool-gram.jpg', 'this is the coolest!', '{"these","are","my","cool","tags"}', 1),
+        ('my-cool-gram.jpg', 'this is the coolest!', '{"these","are","my","cool","tags"}', 2),
+        ('my-cool-gram.jpg', 'this is the coolest!', '{"these","are","my","cool","tags"}', 3);
+
 
 INSERT INTO comments (comment_text, gram_id, comment_by)
     VALUES
