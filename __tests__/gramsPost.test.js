@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const User = require('../lib/models/User')
 
 jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
     req.user = {
@@ -27,16 +28,18 @@ jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
         .post('/api/v1/gramPost')
         .send({ 
             caption: 'Hello this is some text',
-            tags: '#blessed',
-            author: 'taylor',
+            tags: ['blessed'],
+            author: 1,
+            photoUrl: 'yo',
          })
         .then((res) => {
           expect(res.body).toEqual({
-            id: '1',
+            id: '3',
             caption: 'Hello this is some text',
-            tags: '#blessed',
-            author: 'taylor',
-            username: 'test_user',
+            tags: ['blessed'],
+            author: '1',
+            photoUrl: 'yo',
+            
           });
         });
     });
