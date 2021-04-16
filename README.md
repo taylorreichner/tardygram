@@ -34,15 +34,16 @@ Comments have:
 
 Create authentication routes
 
-- `GET /auth/login`
+- ~~`GET /auth/login`~~
+
 - redirect to github for login
-- `GET /auth/login/callback`
+- ~~`GET /auth/login/callback`~~
 - take the code issued by GitHub and exchange it for an access token
 - get the users `login` and `avatar_url`
 - check if the user is in the database
 - if **NOT** in the database create the user
 - if in the database update the users avatar_url
-- `GET /auth/verify`
+- ~~`GET /auth/verify`~~
 - uses the `ensureAuth` middleware
 - responds with a user
 
@@ -50,7 +51,7 @@ Create authentication routes
 
 Create RESTful post routes
 
-- `POST /posts`
+- ~~`POST /posts`~~
 - requires authentication
 - creates a new post
 - responds with the new post
@@ -61,12 +62,12 @@ Create RESTful post routes
 - responds with a post by id
 - should include the joined user
 - should include all comments associated with the post (joined with commenter)
-- `PATCH /posts/:id`
+- ~~`PATCH /posts/:id`~~
 - requires authentication
 - only can update the post caption
 - respond with the updated post
 - NOTE: make sure the user attempting to update the post owns it
-- `DELETE /posts/:id`
+- ~~`DELETE /posts/:id`~~
 - requires authentication
 - deletes a post
 - responds with the deleted post
@@ -78,7 +79,7 @@ Create RESTful post routes
 
 Create RESTful comments routes
 
-- `POST /comments`
+- ~~`POST /comments`~~
 - requires authentication
 - create a new comment
 - respond with the comment
