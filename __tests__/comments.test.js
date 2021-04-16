@@ -21,6 +21,18 @@ describe('tardygram COMMENT routes', () => {
 			commentBy: '3',
 		});
 	});
+
+	it('should return a list of all comments', async () => {
+		const { body } = await request(app).get('/api/v1/comments');
+
+		expect(body).toEqual([
+			{
+				commentText: expect.any(string),
+				gramId: expect.any(Number),
+				commentBy: expect.any(Number),
+			},
+		]);
+	});
 });
 
 // POST /comments
