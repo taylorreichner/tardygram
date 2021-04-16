@@ -40,10 +40,22 @@ describe('tardygram COMMENT routes', () => {
 
 		expect(body).toEqual([
 			{
-				id: '4',
-				commentText: expect.any(String),
-				gramId: expect.any(Number),
-				commentBy: expect.any(Number),
+				id: '1',
+				commentText: 'my first comment!',
+				gramId: '1',
+				commentBy: '1',
+			},
+			{
+				id: '2',
+				commentText: 'NEW COMMENT!',
+				gramId: '2',
+				commentBy: '2',
+			},
+			{
+				id: '3',
+				commentText: 'another comment',
+				gramId: '1',
+				commentBy: '1',
 			},
 		]);
 	});
