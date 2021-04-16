@@ -8,26 +8,53 @@ describe('tardygram COMMENT routes', () => {
 		return setup(pool);
 	});
 
-	it('should create a new comment by POST', async () => {
-		const comment = {
-			commentText: 'This is a cool comment!',
-		};
-
-		const { body } = await request(app)
-			.post('/api/v1/comments/new', comment)
+	it('should create a new comment by POST', () => {
+		return request(app)
+			.post('/api/v1/comments/new')
 			.send({
 				commentText: 'This is a really great comment!',
-				gramId: 1,
-				commentBy: 1,
+				gramId: '1',
+				commentBy: '3',
+			})
+			.then((res) => {
+				expect(res.body).toEqual({
+					id: '4',
+					commentText: 'This is a really great comment!',
+					gramId: '1',
+					commentBy: '3',
+				});
 			});
-
-		expect(body).toEqual({
-			commentId: 4,
-			commentText: 'This is a really great comment!',
-			gramId: 1,
-			commentBy: 1,
-		});
 	});
+
+	it('should return a list of all comments', async () => {
+		const { body } = await request(app).get('/api/v1/comments');
+
+		expect(body).toEqual([
+			{
+				id: '1',
+				commentText: 'my first comment!',
+				gramId: '1',
+				commentBy: '1',
+			},
+			{
+				id: '2',
+				commentText: 'NEW COMMENT!',
+				gramId: '2',
+				commentBy: '2',
+			},
+			{
+				id: '3',
+				commentText: 'another comment',
+				gramId: '1',
+				commentBy: '1',
+			},
+		]);
+	 });
+
+	// it('should delete a comment with the given id', async () => {
+	//     const { body } = await request(app).delete('/api/v1/comments/3')
+
+	// })
 });
 
 // POST /comments

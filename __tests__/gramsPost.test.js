@@ -34,7 +34,7 @@ jest.mock('../lib/middleware/ensureAuth.js', () => (req, res, next) => {
          })
         .then((res) => {
           expect(res.body).toEqual({
-            id: '3',
+            id: '4',
             caption: 'Hello this is some text',
             tags: ['blessed'],
             author: '1',
