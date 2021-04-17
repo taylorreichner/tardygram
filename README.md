@@ -84,7 +84,7 @@ Create RESTful comments routes
 - create a new comment
 - respond with the comment
 - HINT: get the user who created the comment from `req.user`.
-- `DELETE /comments/:id`
+- ~~`DELETE /comments/:id`~~
 - requires authentication
 - delete a comment by id
 - respond with the deleted comment
