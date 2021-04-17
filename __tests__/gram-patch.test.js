@@ -19,6 +19,10 @@ describe('gram routes', () => {
 		return setup(pool);
 	});
 
+	beforeEach(() => {
+		return seed();
+	});
+
 	it('creates a gram via POST', async () => {
 		await User.insert({
 			username: 'test_user',
@@ -103,7 +107,7 @@ describe('gram routes', () => {
 			})
 			.then((res) => {
 				expect(res.body).toEqual({
-					id: '2',
+					id: expect.any(String),
 					photoUrl: 'gram_url',
 					caption: 'We had a great time in Denmark',
 					tags: ['tag1', 'tag2', 'tag3'],
