@@ -74,17 +74,13 @@ describe('gram routes', () => {
 			});
 	});
 
-	it.skip('gets the 10 grams with the most comments', () => {
+	it('gets the 10 grams with the most comments', () => {
 		return request(app)
 			.get('/api/v1/grams/popular')
 			.then((res) => {
-				expect(res.body).toEqual({
-					id: '2',
-					caption: 'this is another caption',
-					tags: ['tag1', 'tag2', 'tag3'],
-					author: '2',
-					photoUrl: 'gram_url',
-				});
+				expect(res.body.length).toEqual(
+					10
+				);
 			});
 	});
 

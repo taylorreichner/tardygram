@@ -58,7 +58,7 @@ Create RESTful post routes
 - HINT: get the user who created the post from `req.user`.
 - ~~`GET /posts`~~
 - responds with a list of posts
-- `GET /posts/:id`
+- ~~`GET /posts/:id`~~
 - responds with a post by id
 - should include the joined user
 - should include all comments associated with the post (joined with commenter)
