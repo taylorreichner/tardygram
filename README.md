@@ -56,7 +56,7 @@ Create RESTful post routes
 - creates a new post
 - responds with the new post
 - HINT: get the user who created the post from `req.user`.
-- `GET /posts`
+- ~~`GET /posts`~~
 - responds with a list of posts
 - `GET /posts/:id`
 - responds with a post by id
